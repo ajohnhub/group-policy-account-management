@@ -2,8 +2,8 @@
 <img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
 </p>
 
-<h1>Active Directory Infrastructure in Microsoft Azure</h1>
-This walkthrough demonstrates how to set up Active Directory infrastructure in Microsoft Azure.  <br />
+<h1>Group Policy and Account Management</h1>
+This walkthrough demonstrates how to configure Group Policy and provide System Administrative work witin Active Directory.  <br />
 
 
 <h2>Environments and Technologies Used</h2>
@@ -19,57 +19,48 @@ This walkthrough demonstrates how to set up Active Directory infrastructure in M
 - Windows 10 (21H2)
 
 
-<h2>Deployment and Configuration Steps</h2>
+<h2>Walkthrough Steps</h2>
 
 <p>
 </p>
 <p>
-In this lab, we will create two VMs in the same VNET. One will be a Domain Controller, and the other, a Client machine. We will change the DC to a static IP because it offers Active Directory services to the client machine. The client machine will be joined to the domain. We will control the DNS settings on the client machine; the client machine will use the DC as its DNS server. 
+Log into DC-1 and configure Group Policy to lockout the account after 5 attempts. Use the Google Drive below to learn how to configure the Account Lockout Threshold:
+[How To Configure Account Lockout Threshold in Group Policy](https://docs.google.com/document/d/1msUMWaPDMR1hPYxzGOlgN4KpUjnyyYEv3vvOQXkSpLQ/edit)
 
 <br />
 <p>
-<img src="https://github.com/user-attachments/assets/21758e18-04c1-44f9-91a4-f4f71ca5b3e7" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/0b1a95ed-3a6d-4e68-84ed-d098e04be041" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<p>
-First, we will set up a Domain Controller in Azure.
-Create a Resource Group.
-Create a Virtual Network and Subnet.
-Create the Domain Controller VM (Windows Server 2022) named “DC-1”.
-Create the Client VM (Windows 10) named “Client-1”.
- 
-<img src="https://github.com/user-attachments/assets/0afbad48-3307-42c0-b945-4f65defe7ddc" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
+<p>Next, pick a random user account you created previously and attempt to log in with it 6 times with a bad password.
+<br />
+<img src="https://github.com/user-attachments/assets/1a9f5e30-c5c9-4cd0-bbae-0e0acb22daea" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/f501fba8-db6f-4e22-9ffb-75cae6b2d974" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/36204be1-07ed-4413-bb45-ab9eab1ccc6a" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 
 </p>
 <br />
 
-<p>After the VMs are created, set the Domain Controller’s NIC Private IP address to be static and set Client-1’s DNS settings to DC-1’s Private IP address.
+<p> Now, go back to the Domain Controller (DC-1) and observe that the account has been locked out within Active Directory. Next, unlock the account and reset the password. 
 
-<img src="https://github.com/user-attachments/assets/8a008f4b-bbad-421d-9f99-493add5b9f2d" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
+<img src="https://github.com/user-attachments/assets/11f0e29e-f02c-415c-8aff-1d4de63caa25" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/ffeaeb65-ef66-4cb9-be49-0b9085c082ed" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<img src="https://github.com/user-attachments/assets/d23d9313-72bf-4c85-8824-2dc9cbd33400" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
 <p>
-Log in to the Domain Controller VM and disable the Windows Firewall (for testing connectivity)
+You can also disable the same account within Active Directory.
 </p>
-<img src="https://github.com/user-attachments/assets/7ef01efa-e55d-4985-84fa-8ceccd5b13f0" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://github.com/user-attachments/assets/8e989d6e-f190-4856-bab0-5ef399161bed"
+<img src="https://github.com/user-attachments/assets/bfe55eb7-26a3-4a5f-bf59-cda52dc756c8" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+<br />
+</p>
+After you reset the password, attempt to log into Client-1 with the user account again. If you completed the steps correctly, you should be successfully logged into the user account. 
+</p>
+<img src="https://github.com/user-attachments/assets/021ffc7a-aaa9-436c-a5af-a32f5baf712e"
 height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 </p>
-From the Azure Portal, restart Client-1 and
-Log in to Client-1. Next, attempt to ping DC-1’s private IP address. Ensure that the ping succeeded.
 
-</p>
-<img src="https://github.com/user-attachments/assets/4705220b-4a4e-4dc4-acd3-f6da854d73e4"
-height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-</p>
-
-From Client-1, open PowerShell and run ipconfig /all.
-The output for the DNS settings should show DC-1’s private IP Address.
-
-</p>
-<img src="https://github.com/user-attachments/assets/e253735a-e17f-41bc-b4d1-ae4a59d48d64" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-</p>
 
