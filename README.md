@@ -3,7 +3,7 @@
 </p>
 
 <h1>Group Policy and Account Management</h1>
-This walkthrough demonstrates how to configure Group Policy and provide System Administrative work witin Active Directory.  <br />
+This walkthrough demonstrates how to configure Group Policy and provide System Administrative work within Active Directory.  <br />
 
 
 <h2>Environments and Technologies Used</h2>
